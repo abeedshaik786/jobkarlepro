@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'jobkarlepro:FresherData' %}" method="POST" >
+        {% csrf_token %}
+    <div class="col-sm-4 m-5">
+        <div> {{forms.Gender}}</div>
+        <div>{{forms.Nationality}}</div>
+        <div>{{forms.Religion}}</div> 
+        <div>{{forms.fresher}}</div>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 m-2" type="submit" >Next</button>
+    </div>
+</form>
+<script>
+    $(window).on('load', function() {  
+        //debugger
+        if (localStorage.getItem("country_json") == null) {
+            countryList()
+        }
+      });
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-sm-4 m-5">
+    <form method="POST">
+        {% csrf_token %}
+        {{forms}}
+    </form>
+</div>
+<script>
+    $("#id_Highest_Qualification").on('change',function () {
+        //debugger
+          // get the url of the `load_cities` view
+      var Highest_Qualification_id = $(this).val();  // get the selected country ID from the HTML input
+      $.ajax({    
+        headers: { "X-CSRFToken": '{{csrf_token}}' },
+        type: "POST",                   // initialize an AJAX request
+        url: "{% url 'jobkarlepro:load_Course' %} ",            // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'Highest_Qualification_id': Highest_Qualification_id       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          debugger
+          var datalist = JSON.parse(data.data)
+          $.each(datalist, function(key, value) {   
+            $("#id_Course")
+                .append($("<option></option>")
+                           .attr("value",value)
+                           .text(value)); 
+       });
+     // replace the contents of the city input with the data that came from the server
+        },
+      });
+
+    });
+  </script>
+{% endblock %}

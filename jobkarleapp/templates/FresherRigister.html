@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .rigister-button {
+        text-align: center;
+        margin-left: 100px;
+    }
+</style>
+<div class="m-5">
+    <!-- Material form register -->
+    <div class=" m-5 col-sm-5">
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+            <!-- Form -->
+            <form action="{% url 'jobkarlepro:FresherRigister' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="Fresher_id" id='Fresher_id' value="{{ forms.id }}">
+                 <div>
+                <div class="form-row">
+                    <div class="col">
+                        <!-- First name -->
+                        <div class="md-form">
+                            {{forms.FirstName}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Last name -->
+                        <div class="md-form">
+                            {{forms.SecondName}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-mail -->
+                <div class="md-form mt-0">
+                    {{forms.Email}}
+                </div>
+                <div class="md-form mt-0">
+                    {{forms.PhoneNumber}}
+                </div>
+                <!-- Password -->
+                <div class="md-form">
+                    {{forms.UserName}}
+                </div>
+                <div class="md-form">
+                    {{forms.Password}}
+                </div>
+                </div>
+                <!-- Sign up button -->
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" >Sign in</button>
+            </form>
+            <!-- Form -->
+
+        </div>
+
+    </div>
+    <!-- Material form register -->
+</div>
+</div>
+{% endblock %}
