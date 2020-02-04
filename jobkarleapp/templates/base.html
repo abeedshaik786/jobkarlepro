@@ -5,6 +5,7 @@
 
 <head>
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'static_css/base.css' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -13,17 +14,110 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="body-imgset">
     <!--/.Navbar-->
-    <nav class="navbar navbar-dark ">
-        <img href="{% static 'image/main.jpg' %}" width=200 heigth=200>
-        <form class="form-inline">
-            <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            </div>
-            <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
-        </form>
+    <nav class="navbar navbar-expand-lg base11 navbar-text-color ">
+      <img src="{% static 'Allah.svg.png' %}" width="40" alt="My image"> <strong class="navbar-brand ">Alhamdulillha</strong>
+          <div>
+              <a href="index.html" class="navbar-brand">
+                 <img src="../img/favicon.ico" width="25" height="25"> JOBKARLE Technologies</a>
+              <button class="navbar-toggler" data-toggle="collapse" data-target="#uiNavbar">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="uiNavbar">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a href="index.html" class="nav-link mx-2">
+                             JOBS</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="about.html" class="nav-link mx-2">
+                              RESCRUITERS</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="services.html" class="nav-link mx-2">
+                               COMPANYS</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="contact.html" class="nav-link mx-2">
+                               TOOLS</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="contact.html" class="nav-link mx-2">
+                           MORE</a>
+                      </li>
+                      <li class="nav-item">
+                          <a  href="#" data-toggle="modal" data-target="#darkModalForm" class="nav-link mx-2">
+                              LOGIN</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="contact.html" class="nav-link mx-2">
+                              <i class="far fa-bell fa-2x"></i></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="contact.html" class="nav-link mx-2">
+                               FOR EMPLOYERS</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" data-toggle="modal" data-target="#modalRegisterForm " class="nav-link mx-2">
+                             REGISTER</a>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
     </nav>
+    <div class="nav-imgset ">
+      <div class="row">
+        <div class="col-sm-12 light-navbar ">
+            <nav class="navbar navbar-dark  navbar-expand-sm">
+                <div class="container">
+                    <a href="index.html" class="navbar-brand">
+                       <img src="../img/favicon.ico" width="25" height="25"> UiBrains Technologies</a>
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#uiNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="uiNavbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link mx-2">
+                                   <i class="fa fa-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link mx-2">
+                                    <i class="fa fa-id-card"></i> About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="services.html" class="nav-link mx-2">
+                                    <i class="fa fa-cog"></i> Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="contact.html" class="nav-link mx-2">
+                                    <i class="fa fa-envelope"></i> Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+      </div>
+      <!-- multiple data search at a time search box -->
+      <form method="GET" action="{% url 'jobkarleapp:mulltisearch' %}">
+      <div class=" col-sm-6 m-auto search-box-input "><br>
+        <br>
+        <br>
+        <strong class="search-heading ">Search Job</strong><br>
+        <div class=" search-box row ">
+         <input type="text" placeholder="Role" name='role'>
+         <input type="text" placeholder="Loaction" name='location'>
+         <input type="text" placeholder="Experiance" name="experiance">
+         <input type="text" placeholder="Salary" name="salary">
+         <input type="submit"  class="Search-color" value="Search">
+        </div>
+      </div>
+    </div>
+  </form>
+
     <section>
         {% block content %}
 
@@ -206,6 +300,7 @@
         });
     }
   </script>
+  
   <!-- <script>
   
     $(window).on('load', function() {    

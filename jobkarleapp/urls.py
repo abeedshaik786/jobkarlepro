@@ -5,9 +5,10 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('FresherRigister',views.FresherRigister,name="FresherRigister"),
+    path('mulltisearch',views.mulltisearch,name='mulltisearch'),
     path('FresherData',views.FresherData,name="FresherData"),
     path('country_list',views.country_list,name='country_list'),
     path('FresherQualification',views.FresherQualification,name="FresherQualification"),
-    path('load_Course', views.load_Course, name='load_Course')
+    path('load_Course', views.load_Course, name='load_Course'),
 
 ]

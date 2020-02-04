@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+<!-- {% load static %} -->
 {% block content %}
-<div class="col-sm-4 m-5">
-    <form method="POST">
-        {% csrf_token %}
+{% load static %}
+
+
+<div class="col-sm-3 m-5">
+<form method="POST" action="{% url 'jobkarlepro:FresherQualification' %}" enctype="multipart/form-data">
+      {% csrf_token %}
         {{forms}}
+        <input type="submit" class="m-2" value="Add Qualification">
     </form>
 </div>
 <script>

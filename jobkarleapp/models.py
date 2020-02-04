@@ -40,14 +40,14 @@ class FresherData(models.Model):
     fresher = models.ForeignKey(Fresher,on_delete=models.CASCADE,null=True )
 class FresherQualification(models.Model):   
     Highest_Qualification= models.ForeignKey(Qualification,on_delete=models.SET_NULL, null=True,max_length=100)
-    Course = models.ForeignKey(Qualification_Course,on_delete=models.SET_NULL, null=True,max_length=100)
+    Course = models.ForeignKey(Qualification_Course,on_delete=models.SET_NULL,blank=True,null=True,max_length=100)
     Specialization = models.CharField(max_length=100,)
     Course_Type = models.CharField(max_length=100)
     Passing_Year = models.CharField(max_length=100)
-    Resume = models.FileField()
+    Resume = models.FileField(upload_to = 'Resume')
     fresher = models.ForeignKey(Fresher,on_delete=models.CASCADE)
     def __str__(self):
-        return self.Highest_Qualification
+        return self.Specialization
 class JobRequirments(models.Model):
     CompanyName = models.CharField(max_length=100)
     Company_Description = models.CharField(max_length=100)
@@ -60,4 +60,6 @@ class JobRequirments(models.Model):
     First_HrNumber = models.IntegerField()
     Second_HrNumber = models.IntegerField()
     manager = models.ForeignKey(User ,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.CompanyName
 
