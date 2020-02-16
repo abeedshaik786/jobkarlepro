@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .profile-main{
+    background-image: url('/static/profile-maine-back.jpg');
+    background-size: cover;
+    position: relative;
+    bottom: 300px;
+  }
+</style>
+<section>
+    <div class="m-5">
+        <div class="row">
+          <div class="col-sm-2  ">
+              
+            <div class="card testimonial-card m-2 profile-main ">
+
+                  <!-- Background color -->
+                  <div class="card-up aqua-gradient"></div>
+              
+                  <!-- Avatar -->
+                  <div class="avatar mx-auto white">
+                    <br>
+                    <img src="{{profilepic.Profile.url}}" width="150" height="150" class="rounded-circle img-responsive" alt="no profile">
+                  
+                    <a href="#"><i class="fa fa-camera fa-1x" aria-hidden="true"></i></a>
+                </div>
+              
+                  <!-- Content -->
+                  <div class="card-body">
+                    <!-- Name -->
+                    <h4 class="card-title font-weight-bold">{{user_data.first_name}} {{user_data.last_name}} </h4>
+                    <p class="font-weight-bold">Gender is {{user_personal_data.Gender}}</p>
+                    <p class="font-weight-bold">{{user_data.first_name}}  living in {{user_personal_data.Nationality}}</p>
+                    <p class="font-weight-bold"> Religion {{user_personal_data.Religion}}</p>
+                    <hr>
+                    <!-- Quotation -->
+                    <p class="font-weight-bold">{{user_data.email}}</p>
+                    <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
+                      adipisci</p>
+                  </div>    
+          </div>
+          </div>
+          <dvi class="col-sm-1"></dvi>
+          <div class="col-sm-6 pb-2">
+            {% for comdata in student_jobs %}
+        <!-- Card -->
+<div class="card booking-card m-2">
+        <!-- Card content -->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-5">
+                <h4 class="card-title font-weight-bold"><a>{{comdata.CompanyName}}</a></h4>
+            </div>
+            <div class="col-sm-5"></div>
+            <div class="col-sm-2">
+              {% for user in users %}
+                <input type="hidden"  id='user_id' value="{{ user.id }}">
+              {% endfor %}
+               <a href="#!">
+                  <i class="fas fa-user-edit company_user" style="color: orange;"   company_id='{{comdata.id}}' aria-hidden="true">Apply</i>
+                  </a>
+            </div>
+          </div>
+      
+          <!-- Title -->
+          <!-- Data -->
+          <ul class="list-unstyled list-inline rating mb-0">
+            <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
+            <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+            <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+            <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+            <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
+            <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
+          </ul>
+          <p class="mb-2">{{comdata.CompanyName}}</p>
+          <!-- Text -->
+          <p class="card-text">{{comdata.Description}}</p>
+          <hr class="my-4">
+          <p class="lead"><strong>{{comdata.Skills}}</strong></p>
+          <p class="card-text">{{comdata.JobDescription}}</p><br>
+          <p class="lead"><strong>Interview</strong></p>
+          <p class="card-text">{{comdata.InterviewDate}}</p>
+          <p class="card-text">{{comdata.InterviewLocation}}</p>
+          <p class="card-text">{{comdata.HrNumber}}</p>
+          <!-- Button -->
+        </div>
+      
+      </div>
+      <!-- Card -->
+    {% endfor %} 
+          </div>
+          <div class="col-sm-2">
+          
+          </div>
+        </div>
+      </div>
+</section>
+
+{% endblock %}

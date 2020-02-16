@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 TITLE_CHOICES = [
     ('male', 'Male.'),
@@ -14,6 +15,9 @@ Qualification_CHOICES = [
     ('12th','10th'),
     ('below 10th','Below 10th')
 ]
+# class User(AbstractUser):
+#     is_student = models.BooleanField(default=False)
+#     is_teacher = models.BooleanField(default=False)
 class Qualification(models.Model):
     name = models.CharField(max_length=100)
 
@@ -37,7 +41,9 @@ class FresherData(models.Model):
     Gender = models.CharField(max_length=4,choices=TITLE_CHOICES)
     Nationality = models.CharField(max_length=100,blank=False)
     Religion = models.CharField(max_length=100,blank=False)
-    fresher = models.ForeignKey(Fresher,on_delete=models.CASCADE,null=True )
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True )
+    def __str__(self):
+        return self.Nationality
 class FresherQualification(models.Model):   
     Highest_Qualification= models.ForeignKey(Qualification,on_delete=models.SET_NULL, null=True,max_length=100)
     Course = models.ForeignKey(Qualification_Course,on_delete=models.SET_NULL,blank=True,null=True,max_length=100)
@@ -45,9 +51,13 @@ class FresherQualification(models.Model):
     Course_Type = models.CharField(max_length=100)
     Passing_Year = models.CharField(max_length=100)
     Resume = models.FileField(upload_to = 'Resume')
-    fresher = models.ForeignKey(Fresher,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True )
+    
     def __str__(self):
         return self.Specialization
+class ProfileImg(models.Model):
+    Profile = models.ImageField(upload_to='profile')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True )
 class JobRequirments(models.Model):
     CompanyName = models.CharField(max_length=100)
     Company_Description = models.CharField(max_length=100)
@@ -62,4 +72,8 @@ class JobRequirments(models.Model):
     manager = models.ForeignKey(User ,on_delete=models.CASCADE)
     def __str__(self):
         return self.CompanyName
+
+# creating chatting process for this application
+
+
 

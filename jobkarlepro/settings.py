@@ -70,6 +70,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'jobkarlepro.wsgi.application'
+
+#
 #dipended countries dropdown
 COUNTRIES1 = [os.path.join(BASE_DIR, 'countries1.json')]
 COUNTRIES2 = [os.path.join(BASE_DIR, 'countries2.json')]

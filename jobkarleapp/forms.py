@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Fresher,FresherData,FresherQualification,Qualification_Course
+from django.contrib.auth.models import User
 
 class FresherModel(forms.ModelForm):
     def __init__(self,*args, **kwargs):
@@ -9,7 +10,7 @@ class FresherModel(forms.ModelForm):
             self.fields[field].widget.attrs["class"] = "form-control"
             self.fields[field].widget.attrs["placeholder"] = field
     class Meta:
-        model = Fresher
+        model = User
         fields = '__all__'
 class FresherDataModel(forms.ModelForm):
     def __init__(self,*args, **kwargs):
@@ -21,7 +22,7 @@ class FresherDataModel(forms.ModelForm):
                 self.fields[field].widget.attrs["id"] = "id_country"
     class Meta:
         model = FresherData
-        fields = '__all__'
+        exclude = ['user']
 class FresherQualificationModel(forms.ModelForm):
     def __init__(self,*args, **kwargs):
         super(FresherQualificationModel,self).__init__(*args,**kwargs)
@@ -39,4 +40,4 @@ class FresherQualificationModel(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = field
     class Meta:
         model = FresherQualification
-        fields = '__all__'
+        exclude = ['user']
